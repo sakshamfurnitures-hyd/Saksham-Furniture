@@ -1,0 +1,2 @@
+@tailwind base;@tailwind components;@tailwind utilities;
+html{scroll-behavior:smooth}body{background:#FAF8F3;color:#292724;font-family:Arial,Helvetica,sans-serif}a,button{ -webkit-tap-highlight-color:transparent }@media(prefers-reduced-motion:reduce){*,*:before,*:after{scroll-behavior:auto!important;transition-duration:.01ms!important;animation-duration:.01ms!important}}
