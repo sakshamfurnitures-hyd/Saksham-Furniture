@@ -1,0 +1,6 @@
+Updated from the exact user-uploaded latest Next.js ZIP.
+- Header/footer wordmark: small bed icon + large readable Saksham Furniture name.
+- Banner auto transition every 5 seconds, retaining original banner artwork and mobile images.
+- Why Choose Us + Google Reviews in side-by-side desktop panels; mobile one-line horizontal swipe rails with auto-slide.
+- Review excerpts were retained from the uploaded project and are NOT independently verified live; links direct visitors to Google.
+- Catalogue, product variants, sharing and product pages otherwise preserved.

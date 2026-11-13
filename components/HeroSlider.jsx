@@ -1,6 +1,31 @@
-'use client';
-import {useState,useEffect} from 'react';
+"use client";
+import {useState,useEffect,useRef} from 'react';
 import Link from 'next/link';
 import {ChevronLeft,ChevronRight} from 'lucide-react';
-const slides=[['bed','Beds'],['sofa','Sofas'],['dining','Dining'],['mattress','Mattresses'],['bed','Custom Furniture']];
-export default function HeroSlider(){const [current,setCurrent]=useState(0);useEffect(()=>{const t=setInterval(()=>setCurrent(v=>(v+1)%5),6500);return ()=>clearInterval(t)},[]);return <section aria-label="Furniture offers" className="relative max-w-7xl mx-auto px-3 sm:px-5 pt-4 md:pt-6"><div className="relative overflow-hidden rounded-2xl border border-forest/10 shadow-sm">{slides.map(([slug,label],i)=><Link key={i} href={'/category?category='+slug} aria-label={'Explore '+label} aria-hidden={i!==current} tabIndex={i===current?0:-1} className={`${i===current?'block':'hidden'} relative`}><picture><source media="(max-width: 600px)" srcSet={'/assets/banner-'+(i+1)+'-mobile.webp'}/><img src={'/assets/banner-'+(i+1)+'.webp'} alt={'Saksham Furniture '+label+' collection'} fetchPriority={i===0?'high':'auto'} className="w-full h-auto"/></picture></Link>)}<button onClick={()=>setCurrent(v=>(v+4)%5)} aria-label="Previous banner" className="absolute left-2 md:left-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 text-forest p-2 hover:bg-gold hover:text-white transition"><ChevronLeft size={20}/></button><button onClick={()=>setCurrent(v=>(v+1)%5)} aria-label="Next banner" className="absolute right-2 md:right-4 top-1/2 -translate-y-1/2 rounded-full bg-white/90 text-forest p-2 hover:bg-gold hover:text-white transition"><ChevronRight size={20}/></button><div className="absolute bottom-3 left-1/2 -translate-x-1/2 flex gap-2">{slides.map((_,i)=><button key={i} aria-label={'Show banner '+(i+1)} aria-current={current===i} onClick={()=>setCurrent(i)} className={'h-2.5 rounded-full transition-all '+(current===i?'bg-forest w-6':'bg-white/80 w-2.5')}/>)}</div></div></section>}
+
+// Original website banners are complete designs (including text and furniture).
+// Do not overlay a second text layer or crop them with object-fit:cover.
+const slides=[
+  {image:'banner-1.webp',mobile:'banner-1-mobile.webp',slug:'bed',title:'Premium Beds'},
+  {image:'banner-2.webp',mobile:'banner-2-mobile.webp',slug:'sofa',title:'Luxury Sofas'},
+  {image:'banner-3.webp',mobile:'banner-3-mobile.webp',slug:'dining',title:'Dining Tables'},
+  {image:'banner-4.webp',mobile:'banner-4-mobile.webp',slug:'mattress',title:'Mattresses'},
+  {image:'banner-5.webp',mobile:'banner-5-mobile.webp',slug:'bed',title:'Custom Furniture'}
+];
+export default function HeroSlider(){
+  const [current,setCurrent]=useState(0);
+  const touchStartX=useRef(null);
+  const onTouchStart=e=>{touchStartX.current=e.touches[0]?.clientX ?? null};
+  const onTouchEnd=e=>{if(touchStartX.current===null)return;const delta=e.changedTouches[0].clientX-touchStartX.current;touchStartX.current=null;if(Math.abs(delta)>45)setCurrent(v=>(v+(delta<0?1:slides.length-1))%slides.length)};
+  useEffect(()=>{const t=setInterval(()=>setCurrent(v=>(v+1)%slides.length),5000);return ()=>clearInterval(t)},[]);
+  return <section className="premium-hero full-image-hero" aria-label="Furniture collections">
+    <div className="premium-hero-frame" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
+      {slides.map((s,i)=><Link key={s.image} href={'/category?category='+s.slug} className={'premium-hero-slide '+(current===i?'is-active':'')} aria-hidden={current!==i} tabIndex={current===i?0:-1} aria-label={'Explore '+s.title}>
+        <picture><img src={'/assets/'+s.image} alt={s.title+' at Saksham Furniture'} fetchPriority={i===0?'high':'auto'} loading={i===0?'eager':'lazy'}/></picture>
+      </Link>)}
+      <button type="button" className="hero-prev" onClick={()=>setCurrent(v=>(v+slides.length-1)%slides.length)} aria-label="Previous slide"><ChevronLeft/></button>
+      <button type="button" className="hero-next" onClick={()=>setCurrent(v=>(v+1)%slides.length)} aria-label="Next slide"><ChevronRight/></button>
+      <div className="hero-dots">{slides.map((s,i)=><button type="button" aria-label={'Slide '+(i+1)} aria-current={current===i} onClick={()=>setCurrent(i)} key={s.image} className={current===i?'active':''}/>)}</div>
+    </div>
+  </section>
+}

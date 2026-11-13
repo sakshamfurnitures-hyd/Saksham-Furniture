@@ -1,0 +1,7 @@
+Saksham Furniture responsive fixes, 13 Nov 2026
+- Square 1:1 product images with no blank space under the photo.
+- Fallback image for broken links (does not repair invalid/private Google Sheet links).
+- Category/product/collection sections widened to max 1680px and responsive gutters.
+- Header logo alignment and spacing refined.
+- Google Sheets data, bed variants, share links and review section preserved.
+Run npm install then npm run build before publishing.

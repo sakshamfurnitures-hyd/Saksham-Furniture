@@ -1,0 +1,1 @@
+Banner fix: original 5 full artwork images restored. Desktop 3:1, mobile 4:5; no crop. Category section full-width, 9 columns desktop / 3 mobile. Existing product and Google Sheets code unchanged. Run npm install, npm run dev.

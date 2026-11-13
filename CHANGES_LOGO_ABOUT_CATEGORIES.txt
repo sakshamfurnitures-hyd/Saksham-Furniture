@@ -1,0 +1,1 @@
+Updated header/footer furniture emblem, expanded About Saksham Furniture, standardised category display names to Title Case/plural where appropriate. Category slugs and catalogue logic unchanged. Please verify in browser before deploying.

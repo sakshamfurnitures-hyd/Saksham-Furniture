@@ -1,0 +1,18 @@
+Saksham Furniture — Google Sheet pricing
+
+Add optional columns to your existing Sheet (do not remove existing columns):
+mrp | offer_label | offer_active
+
+Existing price column remains the actual selling price. Example:
+price = 16500
+mrp = 22000
+offer_label = Special Offer
+offer_active = YES
+
+The site calculates percentage off automatically when mrp > price and offer_active is not NO/FALSE/0/OFF.
+Each variant row (Queen/King, storage/no storage) may have its own price and mrp.
+
+IMPORTANT: Your Google Apps Script API must return these new fields in its JSON output. If your Apps Script explicitly maps only fixed columns, update that mapping to include mrp, offer_label and offer_active. If it returns row objects from sheet headers automatically, no script change is needed.
+
+Wishlist uses localStorage on each visitor's browser; it is not synced across devices.
+Google Drive images: thumbnail endpoint may be blocked or throttled. Use public Anyone-with-link permissions; if failures persist, migrate image hosting to a dedicated image CDN.

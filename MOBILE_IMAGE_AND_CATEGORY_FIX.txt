@@ -1,0 +1,1 @@
+Mobile: increased logo emblem size; removed duplicate category chips only on mobile. Drive images: normalize Drive file links to thumbnails, retry alternate sizes and endpoint, and never silently replace a failed product photo with a different category product. If an image still fails, inspect Drive permissions/browser console. Desktop layout unchanged.

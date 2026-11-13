@@ -1,0 +1,1 @@
+Saksham Furniture: replaced header/footer logos with approved HD branding, updated favicon and PWA icons, widened featured catalogue to reduce side gaps, and added three customer-review excerpts with Google listing link. Google review excerpts are not live API sync; verify live Google listing before public deployment. Existing variants and share features retained.
