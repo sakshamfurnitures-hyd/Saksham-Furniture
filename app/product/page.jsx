@@ -7,7 +7,10 @@ export default async function Product({searchParams}){
  const params=await searchParams;
  const p=await lookup(params);
  const allProducts=p?groupProducts(await getProducts()):[];
- const related=p?allProducts.filter(item=>item.category===p.category&&item.name!==p.name).slice(0,4):[];
+ const related=p?[
+  ...allProducts.filter(item=>item.category===p.category&&item.name!==p.name),
+  ...allProducts.filter(item=>item.category!==p.category)
+ ].slice(0,10):[];
  return <><Header/><main className="sf-product-detail mx-auto py-6 md:py-10 min-h-[55vh]">
  {!p?<div><h1 className="text-3xl font-bold text-forest">Product not found</h1><p className="mt-4">The product may have been updated in Google Sheets.</p><Link href="/category" className="inline-block mt-5 text-gold font-bold">Browse furniture →</Link></div>:<>
  <nav className="text-xs text-charcoal/60 mb-5"><Link href="/">Home</Link> / <Link href={'/category?category='+p.category}>{categoryLabels[p.category]||'Furniture'}</Link> / {p.name}</nav>
