@@ -1,20 +1,34 @@
-# Saksham Furniture — Next.js + Tailwind CSS | Phase 1
+# Saksham Furniture — Complete Next.js website
 
-This is a **design preview**, not yet a full replacement for the live website. It implements the redesigned header, 9 mobile categories, premium footer, light ivory background and a homepage category preview using the original uploaded assets.
+Next.js 15 App Router + Tailwind CSS, retaining the approved Phase 2 design.
 
-## Run locally
-1. Install Node.js 20 or newer.
-2. `npm install`
-3. `npm run dev`
-4. Open http://localhost:3000
+## Start locally
 
-## Netlify preview
-Connect the repository in Netlify, with build command `npm run build` and default Next.js framework settings. Deploy on a temporary netlify.app subdomain. Do **not** connect the production domain yet. Netlify usage credits still apply.
+```bash
+npm install
+npm run dev
+```
 
-## Not yet implemented
-- Live Google Sheets catalogue, 400–500 product optimizations, individual product pages, share-image metadata, PWA installation, Google reviews, search functionality. The search form and category links lead to placeholder catalogue route for now.
-- Homepage below categories is a temporary placeholder; original sections will be migrated after header/footer approval.
-- Favicon uses the supplied mobile SVG logo. Final small-size legibility can be refined after approval.
+## Netlify / GitHub
 
-## Original content
-All furniture and brand assets were copied from the latest supplied ZIP. Original HTML/CSS/JS files were not altered.
+Push **contents of this folder** to the repository root. Netlify: import GitHub repository, build command `npm run build`, Next.js runtime automatically detected. Do not use `next export` or manually set `.next` as a static publish folder for server-rendered product metadata.
+
+Set environment variables in Netlify: `GOOGLE_SHEETS_API_URL` (existing public Apps Script JSON endpoint) and `NEXT_PUBLIC_SITE_URL` (the exact temporary `https://...netlify.app` URL). Redeploy after setting these variables. On production set `NEXT_PUBLIC_SITE_URL=https://sakshamfurniture.in`.
+
+## Catalogue
+
+The same Google Sheet fields are used: id, name, category, size, storage, material, price, description, image_url, status, featured. Rows are grouped into product variants; price is taken from the preferred/default variant. The server caches API data for five minutes. Sheet edits require no deployment but may take up to 5 minutes to appear. Product pages generate server-side Open Graph metadata for social previews. Product photos must be public, directly fetchable HTTPS image URLs; Google Drive thumbnail URLs may not be reliable for social bots. The URL in the social preview is only guaranteed after deployment and validation with WhatsApp/Facebook sharing debuggers.
+
+The homepage shows featured products when live Sheet data is available; when the API is unavailable, no invented products are shown. Search works on product name/category/description/material. Product variant selector and WhatsApp ordering are included.
+
+## PWA
+
+The manifest and service worker allow installation on supported mobile browsers over HTTPS. The offline page is a fallback, not an offline catalogue.
+
+## Reviews
+
+The Google Reviews section links to the existing Google Maps listing. It does not invent star ratings or scrape live reviews. Live review cards require an authorized API or approved reviews data source.
+
+## Limits / verification
+
+Server-rendered pages and image requests consume Netlify Free resources; no zero-credit guarantee. Test in a Netlify preview URL before connecting your domain. `NEXT_PUBLIC_SITE_URL` must match the current deployment domain for absolute social metadata.
