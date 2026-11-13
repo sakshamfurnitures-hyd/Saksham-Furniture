@@ -1,4 +1,5 @@
-import Header,{categories} from '../components/Header';
+import Header from '../components/Header';
+import {categories} from '../lib/categories';
 import ProductCard from '../components/ProductCard';
 import {getProducts,groupProducts} from '../lib/catalogue';
 import Footer from '../components/Footer';

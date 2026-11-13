@@ -2,7 +2,7 @@
 import {useState} from 'react';
 import Link from 'next/link';
 import {Search, Phone, Menu, X, ArrowRight} from 'lucide-react';
-export const categories=[['Beds','bed'],['Sagwan Wood Bed','sagwan-bed'],['Upholstery Bed','upholstery-bed'],['Sofas','sofa'],['Dining','dining'],['Mattress','mattress'],['Dressing Table','dressing-table'],['Chairs','chairs'],['Wardrobe','wardrobe']];
+import {categories} from '../lib/categories';
 export default function Header(){const [open,setOpen]=useState(false);const [search,setSearch]=useState('');return <>
 <div className="bg-forest text-white/90 text-[11px] md:text-xs"><div className="mx-auto max-w-7xl px-4 py-2 flex items-center justify-center md:justify-between gap-3"><span>✦ Factory Direct Furniture</span><span className="hidden md:inline">Delivery Across Hyderabad</span><span className="hidden md:inline">Customised Furniture Available</span></div></div>
 <header className="sticky top-0 z-50 bg-ivory/95 backdrop-blur-xl border-b border-forest/10 shadow-[0_6px_24px_rgba(23,61,54,.05)]"><div className="mx-auto max-w-7xl px-3 sm:px-5 h-[76px] md:h-[92px] flex items-center gap-3 md:gap-8">
