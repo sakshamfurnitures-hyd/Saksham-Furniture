@@ -1,0 +1,6 @@
+Latest website base: Saksham_Furniture_5_Premium_Banners_Big_Logo_Final.zip
+Exact user-supplied Saksham logo used in header on desktop/mobile.
+All ten category strips now show gold icon, uppercase title, circular arrow; photos remain 1:1 square.
+Teakwood Sofas category photo updated with wooden sofa set.
+Banner carousel uses horizontal slide transition, with existing 5 banners and swipe/arrows retained.
+Other features unchanged.

@@ -1,0 +1,2 @@
+Base: Saksham_Furniture_Latest_Curve_Logo_Fix.zip
+Only changes: category card curved strip CSS; remove header logo upper artifact and underline below FURNITURE. Other files unchanged.

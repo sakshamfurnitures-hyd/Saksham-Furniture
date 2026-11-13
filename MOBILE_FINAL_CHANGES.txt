@@ -1,0 +1,3 @@
+Mobile updates: dark green/gold scrollable category navigation; 2-column category images; Teakwood Sofas category; compact heading; mobile product cards hide wishlist/share actions; product detail retains both actions; mobile product image no zoom; green contact buttons; mobile wishlist page/header icon; updated favicon/app icons. Desktop layout unchanged.
+Teakwood Sofas category slug for Google Sheet: teakwood-sofa. Add product rows with category=teakwood-sofa. The category thumbnail currently uses an existing sofa image as a temporary starter; replace public/assets/category-teakwood-sofa.webp with a teakwood sofa photo when ready.
+Google Drive images: public sharing permissions required. Test all image links after deployment.

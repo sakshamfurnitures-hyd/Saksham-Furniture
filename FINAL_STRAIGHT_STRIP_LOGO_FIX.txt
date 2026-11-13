@@ -1,0 +1,1 @@
+Based on uploaded latest ZIP. Replaced curved strip CSS with straight green label, single gold top border, compact 32px mobile strip. Removed bottom transparent area and black line/artifacts from header logo. No other website components changed.

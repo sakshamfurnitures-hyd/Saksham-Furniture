@@ -1,0 +1,1 @@
+Updated 5 homepage banners: Cot ₹16,500; Sofa ₹24,000; Dining ₹22,000; Mattress ₹9,500; Dressing ₹5,900. Banner assets are 2172x724 source images converted to optimized WebP. Desktop and mobile use same complete banner without cropping. Header house-bed brand symbol and larger text retained; other site features unchanged. Browser favicon/app icon kit unchanged.

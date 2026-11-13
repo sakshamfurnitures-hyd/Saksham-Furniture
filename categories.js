@@ -1,0 +1,1 @@
+export const categories=[['Beds','bed'],['Sagwan Beds','sagwan-bed'],['Upholstered Beds','upholstery-bed'],['Sofas','sofa'],['Teakwood Sofas','teakwood-sofa'],['Dining Tables','dining'],['Mattresses','mattress'],['Dressing Tables','dressing-table'],['Chairs','chairs'],['Wardrobes','wardrobe']];
