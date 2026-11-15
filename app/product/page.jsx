@@ -1,12 +1,13 @@
 import ProductGallery from '../../components/ProductGallery';
 import ProductCard from '../../components/ProductCard';
-import Header from '../../components/Header';import Footer from '../../components/Footer';import VariantSelector from '../../components/VariantSelector';import Link from 'next/link';import {getProducts,groupProducts,clean,photo,money,categoryLabels} from '../../lib/catalogue';
-async function lookup(params){const products=groupProducts(await getProducts());return products.find(p=>p.category===clean(params.category)&&p.name.toLowerCase()===String(params.name||'').toLowerCase())}
-export async function generateMetadata({searchParams}){const params=await searchParams;const p=await lookup(params);if(!p)return {title:'Furniture Product | Saksham Furniture'};const title=p.name+' | '+money(p.price)+' | Saksham Furniture';const description=[p.description,p.material,p.size,'Factory-direct furniture in Hyderabad.'].filter(Boolean).join(' • ').slice(0,250);const image=photo(p.image,p.category);return {title,description,openGraph:{title,description,type:'website',images:[{url:image,alt:p.name}]},twitter:{card:'summary_large_image',title,description,images:[image]}}}
+import Header from '../../components/Header';import Footer from '../../components/Footer';import VariantSelector from '../../components/VariantSelector';import Link from 'next/link';import {getCatalogueState,groupProducts,clean,photo,money,categoryLabels} from '../../lib/catalogue';
+export const dynamic='force-dynamic';
+async function lookup(params){const state=await getCatalogueState();const products=groupProducts(state.products);return products.find(p=>p.category===clean(params.category)&&p.name.toLowerCase()===String(params.name||'').toLowerCase())}
+export async function generateMetadata({searchParams}){const params=await searchParams;const p=await lookup(params);if(!p)return {title:'Furniture Product | Saksham Furniture'};const title=p.name+' | '+money(p.price)+' | Saksham Furniture';const description=[p.description,p.material,p.size,'Factory-direct furniture in Hyderabad.'].filter(Boolean).join(' • ').slice(0,250);const image='https://sakshamfurniture.in/api/product-preview?category='+encodeURIComponent(p.category)+'&name='+encodeURIComponent(p.name);const url='https://sakshamfurniture.in/product?category='+encodeURIComponent(p.category)+'&name='+encodeURIComponent(p.name);return {title,description,alternates:{canonical:url},openGraph:{title,description,type:'website',url,siteName:'Saksham Furniture',images:[{url:image,alt:p.name}]},twitter:{card:'summary_large_image',title,description,images:[image]}}}
 export default async function Product({searchParams}){
  const params=await searchParams;
  const p=await lookup(params);
- const allProducts=p?groupProducts(await getProducts()):[];
+ const allProducts=p?groupProducts((await getCatalogueState()).products):[];
  const related=p?[
   ...allProducts.filter(item=>item.category===p.category&&item.name!==p.name),
   ...allProducts.filter(item=>item.category!==p.category)

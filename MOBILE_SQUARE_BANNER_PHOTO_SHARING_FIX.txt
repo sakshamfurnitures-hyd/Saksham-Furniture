@@ -1,0 +1,1 @@
+Changes only: mobile entire category card is 1:1 including strip; banner image fills mobile slide height; product detail Share Product Photo button uses native file share (WhatsApp selection required), fallback downloads photo. Normal Order on WhatsApp remains unchanged; browsers cannot silently attach a photo to a wa.me chat. Existing designs, catalogue and pricing untouched.

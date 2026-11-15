@@ -1,7 +1,6 @@
 "use client";
 import {useState,useEffect,useRef} from 'react';
 import Link from 'next/link';
-import {ChevronLeft,ChevronRight} from 'lucide-react';
 
 // Original website banners are complete designs (including text and furniture).
 // Do not overlay a second text layer or crop them with object-fit:cover.
@@ -20,12 +19,13 @@ export default function HeroSlider(){
   useEffect(()=>{const t=setInterval(()=>setCurrent(v=>(v+1)%slides.length),5000);return ()=>clearInterval(t)},[]);
   return <section className="premium-hero full-image-hero" aria-label="Furniture collections">
     <div className="premium-hero-frame" onTouchStart={onTouchStart} onTouchEnd={onTouchEnd}>
-      {slides.map((s,i)=><Link key={s.image} href={'/category?category='+s.slug} className={'premium-hero-slide '+(current===i?'is-active':'')} style={{transform:`translateX(${((i-current+slides.length)%slides.length)===slides.length-1?-100:((i-current+slides.length)%slides.length)*100}%)`}} aria-hidden={current!==i} tabIndex={current===i?0:-1} aria-label={'Explore '+s.title}>
+      {slides.map((s,i)=><Link key={s.image} href={'/category?category='+s.slug} className={'premium-hero-slide '+(current===i?'is-active':'')}  aria-hidden={current!==i} tabIndex={current===i?0:-1} aria-label={'Explore '+s.title}>
         <picture><img src={'/assets/'+s.image} alt={s.title+' at Saksham Furniture'} fetchPriority={i===0?'high':'auto'} loading={i===0?'eager':'lazy'}/></picture>
       </Link>)}
-      <button type="button" className="hero-prev" onClick={()=>setCurrent(v=>(v+slides.length-1)%slides.length)} aria-label="Previous slide"><ChevronLeft/></button>
-      <button type="button" className="hero-next" onClick={()=>setCurrent(v=>(v+1)%slides.length)} aria-label="Next slide"><ChevronRight/></button>
-      <div className="hero-dots">{slides.map((s,i)=><button type="button" aria-label={'Slide '+(i+1)} aria-current={current===i} onClick={()=>setCurrent(i)} key={s.image} className={current===i?'active':''}/>)}</div>
+
+      <button type="button" className="sf-banner-prev" aria-label="Previous banner" onClick={()=>setCurrent(v=>(v+slides.length-1)%slides.length)}>‹</button>
+      <button type="button" className="sf-banner-next" aria-label="Next banner" onClick={()=>setCurrent(v=>(v+1)%slides.length)}>›</button>
+      <div className="sf-banner-dots" aria-label="Choose banner">{slides.map((s,i)=><button type="button" key={i} className={current===i?'active':''} aria-label={'Banner '+(i+1)} aria-current={current===i?'true':undefined} onClick={()=>setCurrent(i)}/>)}</div>
     </div>
   </section>
 }

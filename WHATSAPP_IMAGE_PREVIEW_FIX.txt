@@ -1,0 +1,9 @@
+WhatsApp product photo preview reliability update
+
+- Order on WhatsApp continues to send a product URL with product name, selected variant and price.
+- The product page exposes product-specific Open Graph metadata.
+- /api/product-preview now tries multiple Google Drive image endpoints and returns image bytes with an image content type; no brand logo or unrelated furniture photo is substituted on failure.
+- If Google Drive image permissions block public access, set each image to Anyone with the link / Viewer or host product images on a publicly accessible image host.
+- IMPORTANT: WhatsApp decides whether to generate/cache a link preview. This does NOT attach an image file to a WhatsApp message automatically.
+- Test only after deployment on https://sakshamfurniture.in. Paste the product URL into WhatsApp and wait for a preview before sending. WhatsApp may cache older previews.
+- No changes to banners, mobile category cards, logo, product prices, or other approved design.

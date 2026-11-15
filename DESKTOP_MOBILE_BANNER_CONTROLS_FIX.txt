@@ -1,0 +1,1 @@
+Removed hero arrow buttons and pagination dots from HeroSlider JSX on all screen sizes. Original banner artwork, autoplay, swipe and links unchanged.

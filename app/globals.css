@@ -296,3 +296,89 @@ html,body{margin:0;overflow-x:clip}
  .sf-category-label .sf-category-label-arrow svg{width:13px!important;height:13px!important;}
  .sf-buy-actions .sf-buy-action{min-height:37px!important;padding:4px 2px!important;}
 }
+
+/* Approved November catalogue/mobile refinements. Keep desktop and straight category strips unchanged. */
+.sf-customize-link{display:inline-flex;align-items:center;margin-top:12px;padding:9px 12px;border:1px solid #b58a52;border-radius:9px;color:#073c2e;font-weight:700;font-size:13px;text-decoration:none}
+.sf-customize-link:hover{background:#f4ecda}
+@media(max-width:767px){
+ .premium-category-card>img{aspect-ratio:1/1!important;width:100%!important;height:auto!important;object-fit:cover!important}
+ .mobile-dropdown a{border:1px solid #0c513e!important;background:#fcfaf6!important;border-radius:8px!important}
+ .premium-logo.sf-wordmark{transform:translateX(5px)}
+ .mobile-quick-categories a{padding:6px 10px!important;min-height:35px!important;line-height:1.1!important}
+ .mobile-quick-categories svg{width:16px!important;height:16px!important}
+ .full-image-hero .premium-hero-frame{aspect-ratio:2.5/1!important;height:auto!important}
+ .full-image-hero .premium-hero-slide img{object-fit:contain!important}
+}
+
+/* Nov 15 targeted mobile fixes: preserve all approved desktop styles. */
+@media(max-width:767px){
+  .premium-header-inner{justify-content:flex-start!important;}
+  .premium-logo.sf-wordmark{margin-left:0!important;margin-right:auto!important;transform:none!important;}
+  .mobile-menu-btn{margin-right:1px!important;}
+  /* The furniture photo itself is a true square; the approved strip sits beneath it. */
+  .premium-category-card>img{display:block!important;aspect-ratio:1/1!important;width:100%!important;height:auto!important;object-fit:cover!important;}
+  .premium-category-card>.sf-category-label{height:30px!important;min-height:30px!important;padding:2px 5px!important;}
+  /* Wider artwork remains fully visible: additional height is letterboxed rather than cropped. */
+  .full-image-hero .premium-hero-frame{aspect-ratio:2.05/1!important;height:auto!important;background:#faf8f3!important;}
+  .full-image-hero .premium-hero-slide img{object-fit:contain!important;}
+}
+
+/* Nov 15: mobile category PHOTO + label together form one exact square. */
+@media (max-width:767px){
+ .premium-category-card{aspect-ratio:1/1!important;display:flex!important;flex-direction:column!important;min-height:0!important;}
+ .premium-category-card>img{aspect-ratio:auto!important;flex:1 1 0!important;min-height:0!important;height:0!important;width:100%!important;object-fit:cover!important;}
+ .premium-category-card>.sf-category-label{flex:0 0 30px!important;height:30px!important;min-height:30px!important;box-sizing:border-box!important;}
+ /* Image fills the actual slide area rather than leaving letterbox whitespace. */
+ .full-image-hero .premium-hero-frame{aspect-ratio:2.05/1!important;height:auto!important;}
+ .full-image-hero .premium-hero-slide picture,.full-image-hero .premium-hero-slide img{width:100%!important;height:100%!important;}
+ .full-image-hero .premium-hero-slide img{object-fit:fill!important;}
+}
+
+/* FINAL: original 2172x724 banner artwork is 3:1. Keep its native ratio
+   at all viewport widths; do not crop, stretch, or letterbox it. */
+.full-image-hero .premium-hero-frame {
+  width:100% !important;
+  height:auto !important;
+  min-height:0 !important;
+  aspect-ratio:3 / 1 !important;
+  overflow:hidden;
+}
+.full-image-hero .premium-hero-slide picture,
+.full-image-hero .premium-hero-slide img {
+  display:block;
+  width:100% !important;
+  height:100% !important;
+}
+.full-image-hero .premium-hero-slide img {
+  object-fit:contain !important;
+  object-position:center center !important;
+}
+/* Google Places reviews: scoped styling, does not change approved layouts */
+.sf-live-reviews{background:#fffaf0;padding:44px 16px}.sf-live-reviews-inner{max-width:1200px;margin:auto}.sf-live-kicker{color:#ad8742;font-size:11px;font-weight:700;letter-spacing:.18em;text-align:center}.sf-live-reviews h2{text-align:center;color:#103e30;font-size:clamp(24px,3vw,34px);font-weight:700;margin:7px 0 18px}.sf-live-rating{display:flex;align-items:center;justify-content:center;gap:10px;flex-wrap:wrap;color:#153f31;font-size:14px}.sf-live-rating strong{font-size:23px}.sf-google-letter{font-size:29px;font-weight:700;color:#4285f4}.sf-live-stars{display:flex;gap:2px}.sf-live-count{color:#666}.sf-live-review-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px;margin:24px 0}.sf-live-review{background:white;border:1px solid #e7d7b7;border-radius:14px;padding:17px;min-width:0}.sf-live-review-author{display:flex;align-items:center;gap:9px;margin-bottom:12px}.sf-live-review-author img,.sf-live-avatar{width:37px;height:37px;border-radius:50%;object-fit:cover;display:grid;place-items:center;background:#e6ebdf;color:#154331;font-weight:700}.sf-live-review-author strong{display:block;font-size:13px;color:#163e31}.sf-live-review-author small{display:block;font-size:11px;color:#777}.sf-live-review p{font-size:13px;line-height:1.6;color:#454545;margin-top:10px;overflow-wrap:anywhere}.sf-live-reviews-link{display:flex;align-items:center;justify-content:center;gap:7px;background:#104332;color:#fff;padding:11px 22px;border-radius:30px;width:max-content;max-width:100%;margin:20px auto 0;font-size:13px;font-weight:600}.sf-live-note,.sf-live-attribution{text-align:center;color:#666;font-size:12px;margin:18px auto 0}.sf-live-attribution{font-size:11px}@media(max-width:767px){.sf-live-review-grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:10px}.sf-live-review{min-width:83%;scroll-snap-align:start}.sf-live-reviews{padding:34px 12px}}
+
+/* Single clean navigation arrow on each side of the hero slider. */
+.full-image-hero .hero-prev,.full-image-hero .hero-next{z-index:5!important;display:flex!important;align-items:center!important;justify-content:center!important;isolation:isolate;overflow:hidden;}
+.full-image-hero .hero-prev::before,.full-image-hero .hero-prev::after,.full-image-hero .hero-next::before,.full-image-hero .hero-next::after{content:none!important;display:none!important;}
+.full-image-hero .hero-prev svg,.full-image-hero .hero-next svg{display:block!important;flex:none!important;width:20px!important;height:20px!important;stroke:currentColor!important;stroke-width:2!important;}
+@media(max-width:767px){.full-image-hero .hero-prev svg,.full-image-hero .hero-next svg{width:15px!important;height:15px!important;}}
+
+/* Mobile banner: hide overlay navigation arrows and pagination dots; swipe and autoplay remain active. */
+@media (max-width:767px){
+ .full-image-hero .hero-prev,
+ .full-image-hero .hero-next,
+ .full-image-hero .hero-dots {display:none!important;}
+}
+
+/* Hero slider navigation removed on desktop and mobile; autoplay and touch swipe remain. */
+.full-image-hero .hero-prev,.full-image-hero .hero-next,.full-image-hero .hero-dots{display:none!important;}
+
+/* Corrected original banner artwork has no baked-in arrows/dots. Show real controls and use smooth fade. */
+.full-image-hero .premium-hero-slide{transform:none!important;opacity:0!important;transition:opacity 1.05s ease-in-out!important;pointer-events:none!important}
+.full-image-hero .premium-hero-slide.is-active{opacity:1!important;pointer-events:auto!important;z-index:1}
+.full-image-hero .sf-banner-prev,.full-image-hero .sf-banner-next{position:absolute;top:50%;transform:translateY(-50%);z-index:4;width:42px;height:42px;border:0;border-radius:50%;background:rgba(255,255,255,.94);color:#073c2e;box-shadow:0 2px 8px #0002;display:grid;place-items:center;font-size:32px;line-height:1;cursor:pointer}
+.full-image-hero .sf-banner-prev{left:10px}.full-image-hero .sf-banner-next{right:10px}
+.full-image-hero .sf-banner-dots{position:absolute;bottom:10px;left:50%;transform:translateX(-50%);display:flex;gap:9px;z-index:4}
+.full-image-hero .sf-banner-dots button{height:10px;width:10px;border:0;border-radius:50%;background:#ffffffdd;box-shadow:0 1px 4px #0003;cursor:pointer;padding:0}
+.full-image-hero .sf-banner-dots button.active{background:#08734d}
+@media(max-width:767px){.full-image-hero .sf-banner-prev,.full-image-hero .sf-banner-next{width:26px;height:26px;font-size:21px}.full-image-hero .sf-banner-prev{left:3px}.full-image-hero .sf-banner-next{right:3px}.full-image-hero .sf-banner-dots{bottom:4px;gap:5px}.full-image-hero .sf-banner-dots button{height:6px;width:6px}}
+@media(prefers-reduced-motion:reduce){.full-image-hero .premium-hero-slide{transition:none!important}}
