@@ -16,7 +16,7 @@ export default async function Product({searchParams}){
  {!p?<div><h1 className="text-3xl font-bold text-forest">Product not found</h1><p className="mt-4">The product may have been updated in Google Sheets.</p><Link href="/category" className="inline-block mt-5 text-gold font-bold">Browse furniture →</Link></div>:<>
  <nav className="text-xs text-charcoal/60 mb-5"><Link href="/">Home</Link> / <Link href={'/category?category='+p.category}>{categoryLabels[p.category]||'Furniture'}</Link> / {p.name}</nav>
  <div className="grid md:grid-cols-2 gap-6 lg:gap-12 items-start">
- <ProductGallery images={p.variants.map(v=>photo(v.image,p.category))} category={p.category} name={p.name}/>
+ <ProductGallery images={[photo(p.image,p.category)]} category={p.category} name={p.name}/>
  <div className="min-w-0"><p className="text-gold uppercase text-xs tracking-widest font-semibold">Saksham Furniture • Factory Direct</p><h1 className="text-2xl md:text-4xl font-semibold text-forest mt-3">{p.name}</h1>
  <VariantSelector variants={p.variants} productName={p.name}/>
  <p className="text-xs text-charcoal/60 mt-4">Confirm stock, final price and delivery with our team.</p>
