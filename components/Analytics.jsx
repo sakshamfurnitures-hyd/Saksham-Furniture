@@ -1,0 +1,15 @@
+'use client';
+import {useEffect,useState} from 'react';
+import {usePathname,useSearchParams} from 'next/navigation';
+export default function Analytics({gaId,pixelId}){
+ const path=usePathname(),query=useSearchParams().toString();const [consent,setConsent]=useState(null);
+ const ga=/^G-[A-Z0-9]+$/.test(gaId||'')?gaId:null, pixel=/^\d+$/.test(pixelId||'')?pixelId:null;
+ useEffect(()=>{setConsent(localStorage.getItem('sf-tracking')||'ask')},[]);
+ useEffect(()=>{if(consent!=='yes')return;
+ if(ga&&!window.gtag){window.dataLayer=window.dataLayer||[];window.gtag=function(){window.dataLayer.push(arguments)};window.gtag('js',new Date());window.gtag('config',ga,{send_page_view:false});const s=document.createElement('script');s.async=true;s.src='https://www.googletagmanager.com/gtag/js?id='+ga;document.head.appendChild(s)}
+ if(pixel&&!window.fbq){const f=function(){f.callMethod?f.callMethod.apply(f,arguments):f.queue.push(arguments)};f.queue=[];f.loaded=true;f.version='2.0';window.fbq=f;window._fbq=f;const s=document.createElement('script');s.async=true;s.src='https://connect.facebook.net/en_US/fbevents.js';document.head.appendChild(s);f('init',pixel)}
+ },[consent,ga,pixel]);
+ useEffect(()=>{if(consent!=='yes')return;window.gtag?.('event','page_view',{page_location:location.href});window.fbq?.('track','PageView');if(path==='/category')window.gtag?.('event','view_item_list',{item_list_name:new URLSearchParams(query).get('category')||'All furniture'});if(path==='/product'){window.gtag?.('event','view_item',{items:[{item_name:new URLSearchParams(query).get('name')||'Furniture'}]});window.fbq?.('track','ViewContent')}},[path,query,consent]);
+ useEffect(()=>{if(consent!=='yes')return;const click=e=>{const a=e.target.closest('a');if(!a)return;const href=a.getAttribute('href')||'';const event=href.startsWith('tel:')?'call_click':/wa\.me|api\.whatsapp\.com/.test(href)?'whatsapp_click':a.dataset.banner?'banner_click':null;if(event){window.gtag?.('event',event,{banner_name:a.dataset.banner});if(event!=='banner_click')window.fbq?.('track','Contact')}};document.addEventListener('click',click);return()=>document.removeEventListener('click',click)},[consent]);
+ if(!ga&&!pixel)return null;const choose=v=>{localStorage.setItem('sf-tracking',v);setConsent(v);if(v==='no'&&window.gtag)location.reload()};return consent==='ask'?<aside className="fixed bottom-3 left-3 right-3 z-[9999] max-w-lg bg-white shadow-xl border rounded-xl p-4 text-sm"><p>Allow optional analytics and marketing cookies to help improve our website?</p><div className="flex gap-3 mt-3"><button className="bg-forest text-white rounded px-4 py-2" onClick={()=>choose('yes')}>Allow</button><button className="border rounded px-4 py-2" onClick={()=>choose('no')}>Decline</button></div></aside>:consent?<button className="fixed bottom-1 left-1 z-40 bg-white border rounded text-xs p-1" onClick={()=>{if(consent==='yes'){localStorage.setItem('sf-tracking','ask');location.reload()}else setConsent('ask')}}>Privacy choices</button>:null
+}
